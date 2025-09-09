@@ -39,7 +39,7 @@
                 <div class="text-6xl mb-4">🏛️</div>
                 <h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">JustArchiv</h1>
                 <p class="text-gray-600 font-medium">Système de Gestion Documentaire</p>
-                <div class="mt-2 text-xs text-gray-500">Version Complète • Phase 2</div>
+                <div class="mt-2 text-xs text-gray-500">Version Complète • Fonctionnel</div>
             </div>
 
             <!-- Login Form -->
@@ -83,8 +83,8 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Code VIP (optionnel)</label>
-                    <input type="text" id="vip-code" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 transition-all" placeholder="Code développeur..." />
-                    <p class="text-xs text-gray-500 mt-1">Laissez vide pour un compte utilisateur standard</p>
+                    <input type="text" id="vip-code" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 transition-all" placeholder="DEV2024, JUSTARCHIV_VIP..." />
+                    <p class="text-xs text-gray-500 mt-1">Codes VIP: DEV2024, JUSTARCHIV_VIP, DEVELOPER_ACCESS</p>
                 </div>
                 <button onclick="register()" class="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg">
                     <span id="register-btn-text">S'inscrire</span>
@@ -109,7 +109,7 @@
                         <span class="text-3xl">🏛️</span>
                         <div>
                             <h1 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">JustArchiv</h1>
-                            <div class="text-xs text-gray-500">Système Complet</div>
+                            <div class="text-xs text-gray-500">Système Complet • Fonctionnel</div>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -212,7 +212,7 @@
                     <div id="recent-activity" class="space-y-3">
                         <div class="text-center text-gray-500 py-8">
                             <span class="text-4xl block mb-2">📊</span>
-                            <p>Aucune activité récente</p>
+                            <p>Chargement de l'activité...</p>
                         </div>
                     </div>
                 </div>
@@ -265,10 +265,7 @@
                 <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div class="col-span-full text-center text-gray-500 py-16">
                         <span class="text-6xl mb-4 block">📄</span>
-                        <p class="text-xl mb-4">Aucun document trouvé</p>
-                        <button onclick="openDocumentModal()" class="text-blue-600 hover:text-blue-800 font-medium">
-                            Ajouter votre premier document
-                        </button>
+                        <p class="text-xl mb-4">Chargement des documents...</p>
                     </div>
                 </div>
             </div>
@@ -288,10 +285,7 @@
                 <div id="categories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="col-span-full text-center text-gray-500 py-16">
                         <span class="text-6xl mb-4 block">📁</span>
-                        <p class="text-xl mb-4">Aucune catégorie créée</p>
-                        <button onclick="openCategoryModal()" class="text-blue-600 hover:text-blue-800 font-medium">
-                            Créer votre première catégorie
-                        </button>
+                        <p class="text-xl mb-4">Chargement des catégories...</p>
                     </div>
                 </div>
             </div>
@@ -311,10 +305,7 @@
                 <div id="tags-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     <div class="col-span-full text-center text-gray-500 py-16">
                         <span class="text-6xl mb-4 block">🏷️</span>
-                        <p class="text-xl mb-4">Aucun tag créé</p>
-                        <button onclick="openTagModal()" class="text-blue-600 hover:text-blue-800 font-medium">
-                            Créer votre premier tag
-                        </button>
+                        <p class="text-xl mb-4">Chargement des tags...</p>
                     </div>
                 </div>
             </div>
@@ -347,7 +338,7 @@
                                 <tr>
                                     <td colspan="5" class="px-6 py-12 text-center text-gray-500">
                                         <span class="text-4xl block mb-2">👥</span>
-                                        <p>Aucun utilisateur trouvé</p>
+                                        <p>Chargement des utilisateurs...</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -736,23 +727,26 @@
             checkAuthState();
         });
 
-        // Initialize Supabase
+        // Initialize Supabase with auto-configuration
         function initSupabase() {
-            const url = localStorage.getItem('supabase-url');
-            const key = localStorage.getItem('supabase-key');
+            // Auto-configure with your Supabase credentials
+            const url = 'https://pymlruomnsycgssxvjfi.supabase.co';
+            const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5bWxydW9tbnN5Y2dzc3h2amZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc0NDk2OTMsImV4cCI6MjA3MzAyNTY5M30.-GRmXqDAqLK9ETk_PYaqqVGujBz4f9IidNrDRssYCQ4';
             
-            if (url && key) {
-                try {
-                    supabase = window.supabase.createClient(url, key);
-                    console.log('✅ Supabase connecté');
-                    return true;
-                } catch (error) {
-                    console.error('❌ Erreur Supabase:', error);
-                    showToast('Erreur de connexion Supabase', 'error');
-                    return false;
-                }
+            try {
+                supabase = window.supabase.createClient(url, key);
+                console.log('✅ Supabase connecté automatiquement');
+                
+                // Save to localStorage for settings display
+                localStorage.setItem('supabase-url', url);
+                localStorage.setItem('supabase-key', key);
+                
+                return true;
+            } catch (error) {
+                console.error('❌ Erreur Supabase:', error);
+                showToast('Erreur de connexion Supabase', 'error');
+                return false;
             }
-            return false;
         }
 
         // Setup event listeners
@@ -1043,6 +1037,7 @@
             // Load section-specific data
             if (section === 'dashboard') {
                 updateDashboardStats();
+                loadRecentActivity();
             }
         }
 
@@ -1447,6 +1442,26 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
             }
         }
 
+        async function loadRecentActivity() {
+            try {
+                const { data: activities, error } = await supabase
+                    .from('activities')
+                    .select(`
+                        *,
+                        users (name)
+                    `)
+                    .order('created_at', { ascending: false })
+                    .limit(10);
+
+                if (error) throw error;
+
+                displayRecentActivity(activities || []);
+
+            } catch (error) {
+                console.error('Erreur chargement activité:', error);
+            }
+        }
+
         // Display functions
         function displayCategories() {
             const grid = document.getElementById('categories-grid');
@@ -1620,6 +1635,38 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
             }
         }
 
+        function displayRecentActivity(activities) {
+            const container = document.getElementById('recent-activity');
+            
+            if (activities.length > 0) {
+                container.innerHTML = activities.map(activity => {
+                    const actionText = getActionText(activity.action);
+                    const timeAgo = getTimeAgo(activity.created_at);
+                    
+                    return `
+                        <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                            <div class="text-2xl">${getActionIcon(activity.action)}</div>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-800">
+                                    <span class="font-medium">${activity.users?.name || 'Utilisateur'}</span>
+                                    ${actionText}
+                                    ${activity.details?.name ? `"${activity.details.name}"` : ''}
+                                </p>
+                                <p class="text-xs text-gray-500">${timeAgo}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                container.innerHTML = `
+                    <div class="text-center text-gray-500 py-8">
+                        <span class="text-4xl block mb-2">📊</span>
+                        <p>Aucune activité récente</p>
+                    </div>
+                `;
+            }
+        }
+
         // Helper functions
         function getDocumentCountByCategory(categoryId) {
             return allDocuments.filter(doc => doc.category_id === categoryId).length;
@@ -1649,6 +1696,43 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
                 case 'admin': return '👨‍💼 Admin';
                 default: return '👤 Utilisateur';
             }
+        }
+
+        function getActionText(action) {
+            const actions = {
+                'document_created': 'a créé le document',
+                'document_updated': 'a modifié le document',
+                'document_deleted': 'a supprimé le document',
+                'category_created': 'a créé la catégorie',
+                'category_updated': 'a modifié la catégorie',
+                'category_deleted': 'a supprimé la catégorie',
+                'tag_created': 'a créé le tag',
+                'tag_updated': 'a modifié le tag',
+                'tag_deleted': 'a supprimé le tag',
+                'user_created': 'a créé l\'utilisateur',
+                'user_updated': 'a modifié l\'utilisateur',
+                'user_deleted': 'a supprimé l\'utilisateur'
+            };
+            return actions[action] || 'a effectué une action';
+        }
+
+        function getActionIcon(action) {
+            if (action.includes('document')) return '📄';
+            if (action.includes('category')) return '📁';
+            if (action.includes('tag')) return '🏷️';
+            if (action.includes('user')) return '👤';
+            return '⚡';
+        }
+
+        function getTimeAgo(dateString) {
+            const now = new Date();
+            const date = new Date(dateString);
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 60) return 'À l\'instant';
+            if (diffInSeconds < 3600) return `Il y a ${Math.floor(diffInSeconds / 60)} min`;
+            if (diffInSeconds < 86400) return `Il y a ${Math.floor(diffInSeconds / 3600)} h`;
+            return `Il y a ${Math.floor(diffInSeconds / 86400)} j`;
         }
 
         function updateDashboardStats() {
@@ -1709,10 +1793,6 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
             }
         }
 
-        // Continue with remaining functions...
-        // [The script continues with all the CRUD operations, modal functions, etc.]
-        // Due to length constraints, I'll provide the key remaining functions:
-
         // Modal functions
         function openDocumentModal() {
             resetDocumentForm();
@@ -1746,6 +1826,7 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
             document.getElementById('document-submit-text').textContent = 'Ajouter';
             selectedTags = [];
             updateSelectedTags();
+            resetFileDropZone();
         }
 
         function resetCategoryForm() {
@@ -1766,6 +1847,19 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
             document.getElementById('user-form').reset();
             document.getElementById('user-id').value = '';
             document.getElementById('user-submit-text').textContent = 'Créer';
+        }
+
+        function resetFileDropZone() {
+            const dropZone = document.getElementById('file-drop-zone');
+            dropZone.innerHTML = `
+                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p class="mt-2 text-sm text-gray-600">
+                    <span class="font-medium">Cliquez pour télécharger</span> ou glissez-déposez
+                </p>
+                <p class="text-xs text-gray-500">PDF, DOC, DOCX, TXT, JPG, PNG jusqu'à 10MB</p>
+            `;
         }
 
         // Color selection functions
@@ -2026,91 +2120,64 @@ CREATE POLICY "Allow all" ON storage.objects FOR ALL USING (true);
             }
         }
 
-        // CRUD operations would continue here...
-        // [Additional CRUD functions for documents, categories, tags, users]
-
-        // System settings
-        function saveSystemSettings() {
-            const settings = {
-                publicRegistration: document.getElementById('public-registration').checked,
-                documentValidation: document.getElementById('document-validation').checked,
-                emailNotifications: document.getElementById('email-notifications').checked
-            };
-            
-            localStorage.setItem('system-settings', JSON.stringify(settings));
-            showToast('Paramètres système sauvegardés !', 'success');
-        }
-
-        // SQL Console (VIP only)
-        async function executeSQLQuery() {
-            if (userProfile?.role !== 'vip') {
-                showToast('Accès refusé - VIP uniquement', 'error');
-                return;
-            }
-
-            const query = document.getElementById('sql-query').value.trim();
-            if (!query) {
-                showToast('Veuillez saisir une requête SQL', 'error');
+        // 📄 DOCUMENTS CRUD FUNCTIONS
+        async function addDocument(formData) {
+            if (!supabase) {
+                showToast('Erreur de connexion Supabase', 'error');
                 return;
             }
 
             try {
-                const { data, error } = await supabase.rpc('execute_sql', { query });
-                
-                const resultsDiv = document.getElementById('sql-results');
-                if (error) {
-                    resultsDiv.innerHTML = `<div class="text-red-600">Erreur: ${error.message}</div>`;
-                } else {
-                    resultsDiv.innerHTML = `<pre class="text-green-600">${JSON.stringify(data, null, 2)}</pre>`;
+                let fileUrl = null;
+                let fileName = null;
+                let fileSize = null;
+                let fileType = null;
+
+                // Upload file if provided
+                if (formData.file) {
+                    const file = formData.file;
+                    const fileExt = file.name.split('.').pop();
+                    const uniqueFileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+                    
+                    const { data: uploadData, error: uploadError } = await supabase.storage
+                        .from('documents')
+                        .upload(uniqueFileName, file);
+
+                    if (uploadError) throw uploadError;
+
+                    const { data: urlData } = supabase.storage
+                        .from('documents')
+                        .getPublicUrl(uniqueFileName);
+
+                    fileUrl = urlData.publicUrl;
+                    fileName = file.name;
+                    fileSize = file.size;
+                    fileType = file.type;
                 }
-            } catch (error) {
-                document.getElementById('sql-results').innerHTML = `<div class="text-red-600">Erreur: ${error.message}</div>`;
-            }
-        }
 
-        function clearSQLConsole() {
-            document.getElementById('sql-query').value = '';
-            document.getElementById('sql-results').innerHTML = '';
-        }
+                // Insert document
+                const { data, error } = await supabase
+                    .from('documents')
+                    .insert([{
+                        name: formData.name,
+                        description: formData.description,
+                        category_id: formData.category_id,
+                        user_id: currentUser.id,
+                        visibility: formData.visibility,
+                        file_name: fileName,
+                        file_size: fileSize,
+                        file_type: fileType,
+                        file_url: fileUrl
+                    }])
+                    .select()
+                    .single();
 
-        // Initialize on page load
-        window.addEventListener('load', () => {
-            // Load saved Supabase config
-            const savedUrl = localStorage.getItem('supabase-url');
-            const savedKey = localStorage.getItem('supabase-key');
-            if (savedUrl) document.getElementById('supabase-url').value = savedUrl;
-            if (savedKey) document.getElementById('supabase-key').value = savedKey;
+                if (error) throw error;
 
-            // Load system settings
-            const savedSettings = localStorage.getItem('system-settings');
-            if (savedSettings) {
-                const settings = JSON.parse(savedSettings);
-                document.getElementById('public-registration').checked = settings.publicRegistration || false;
-                document.getElementById('document-validation').checked = settings.documentValidation || false;
-                document.getElementById('email-notifications').checked = settings.emailNotifications || false;
-            }
-        });
+                // Add tags if provided
+                if (formData.tags && formData.tags.length > 0) {
+                    await addTagsToDocument(data.id, formData.tags);
+                }
 
-        // Placeholder CRUD functions (implement as needed)
-        async function addDocument(formData) { /* Implementation */ }
-        async function updateDocument(id, formData) { /* Implementation */ }
-        async function deleteDocument(id) { /* Implementation */ }
-        async function editDocument(id) { /* Implementation */ }
-
-        async function addCategory(formData) { /* Implementation */ }
-        async function updateCategory(id, formData) { /* Implementation */ }
-        async function deleteCategory(id) { /* Implementation */ }
-        async function editCategory(id) { /* Implementation */ }
-
-        async function addTag(formData) { /* Implementation */ }
-        async function updateTag(id, formData) { /* Implementation */ }
-        async function deleteTag(id) { /* Implementation */ }
-        async function editTag(id) { /* Implementation */ }
-
-        async function addUser(formData) { /* Implementation */ }
-        async function updateUser(id, formData) { /* Implementation */ }
-        async function deleteUser(id) { /* Implementation */ }
-        async function editUser(id) { /* Implementation */ }
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c9626a5784488f',t:'MTc1NzQ0OTIwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+                // Log activity
+                await logActivity('document_created', <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c9835c213c488f',t:'MTc1NzQ1MDU1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
